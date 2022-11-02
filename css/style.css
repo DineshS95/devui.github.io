@@ -1,0 +1,70 @@
+#topbar
+{
+	width: 100%;
+	height: 30px;
+	background-color: #10F69A;
+	
+}
+#topbar h2
+{
+	color: #40B3CA;
+	text-align: center;
+	text-shadow: 2px 2px 5px white;
+	
+}
+body
+{
+	background-color: #90E5D4;
+}
+#container
+{
+	background-color: #4FE8C9;
+	width: 100%;
+	height: 100px;
+	margin: 0px auto;
+}
+#header
+{
+	height: 100px;
+	background-color: #FEFEFE;
+}
+#content1
+{
+	width:100%;
+	height: 600px;
+	background-color: #F86900;
+	--float: center;
+	--margin-right: 23%;
+	margin: 0px auto;
+	text-align: center;
+	
+}
+#content2
+{
+	width:100%;
+	height: 600px;
+	background-color: #FFC502;
+	text-align: center;
+}
+#saving_int
+{
+	display:inline-block;
+	
+}
+table, th, td {
+  border:1px solid black;
+}
+#principle1, #principle2, #principle3, #principle4, #principle5 {
+	
+}
+#content3
+{
+	width:100%;
+	height: 600px;
+	background-color: #F86900;
+	--float: center;
+	--margin-right: 23%;
+	margin: 0px auto;
+	text-align: center;
+	
+}

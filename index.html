@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Return Calculator</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+		
+</head>
+<body>
+	<div id="topbar">
+		<h2>Hello investor !! Welcome to the returns calculator development site</h2>
+	</div>
+	<div id="container">
+		<div id="banner">
+		<!--	<img src="images/logo1.jpg" /> -->
+			<div id="aboutus">
+				<p> About us:</p>
+			</div>
+		</div>
+		<div id="content1">
+			<form action="/url" method="GET">
+				<h1>Return calculator</h1>
+				<p>Please enter Current NAV:</p>
+				<div class="ui input"><input  type="number" id="current_nav" minlength="1" maxlength="5" placeholder="float" required></div>
+				<br></br>
+				<p>Please enter the NAV at the time of purchase:</p>
+				<div class="ui input"><input type="number" id="old_nav" min="1" maxlength="5"  placeholder="float" required></div>
+				<br></br>
+				<p>Please enter the expenese ratio:</p>
+				<div class="ui input"><input type="number" id="exp_ratio" min="1" maxlength="5"  placeholder="optional - float"></div></br>
+				</br>
+				<button class="ui primary button" onclick="cal()">Calculate</button>
+				<button class="ui primary button" onclick="clr()">Reset</button>
+			<!--	<input type="button" value="Calculate" onclick="cal()">
+				<input type="button" value="Reset" onclick="clr()">  -->
+				<br></br>
+				<p>Return: </p>
+				<div class="ui input"><input type="number" id="result" value=""></div>
+				<br></br>
+				<p>Return in %: </p>
+				<div class="ui input"><input type="number" id="return_in_percentage" value=""></div>
+				<button class="ui primary button" onclick="roundoff()">Round-off</button>
+			<!--	<input type="button" value="Round-off" onclick="roundoff()">  -->
+			</form>
+		</div>
+		
+		<div id="content2">
+			<h1 class="heading">Future value calculator:</h1>
+			<p class="para1"> Calculate the return with and without inflation (F = P[({(1+i)^n}-1)/i])</p>
+			<form action="/url" method="GET">
+			<!--	<p>Please enter the principle: (if principle is common for all, click assign button)</p>
+				<input  type="number" id="principle" minlength="1" maxlength="10" placeholder="double" required> -->
+				<div class="ui right labeled input">
+				  <label for="amount" class="ui label">₹</label>
+				  <input type="text" placeholder="Amount" id="principle" minlength="1" maxlength="10" required >
+				  <div class="ui basic label">.00</div>
+				</div>
+				<button class="ui primary button" onclick="assign()">Assign</button>
+				<button class="ui primary button" onclick="applydefault()">Apply default interest rates</button>
+				<button class="ui primary button" onclick="calculateFutureValue()">Submit</button>
+				<br></br>
+				<table style="width:100%">
+				  <tr>
+					<th></th>
+					<th>Gov/Private bank</th>
+					<th>Small finance bank</th>
+					<th>PPF</th>
+					<th>EPFO</th>
+					<th>Index fund</th>
+				  </tr>
+				  <tr>
+					<td>Amount</td>	
+					<td><div class="ui input"><input  type="number" step="10" id="principle1" minlength="1" maxlength="10" placeholder="double" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="10" id="principle2" minlength="1" maxlength="10" placeholder="double" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="10" id="principle3" minlength="1" maxlength="10" placeholder="double" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="10" id="principle4" minlength="1" maxlength="10" placeholder="double" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="10" id="principle5" minlength="1" maxlength="10" placeholder="double" value="" required></div></td>
+				
+				  </tr>
+				  <tr>
+					<td>Interest</td>
+					<td><div class="ui input"><input type="number" step="0.01" id="saving_int1" min="1" maxlength="5"  placeholder="float - (default - 3.5%)" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="saving_int2" min="1" maxlength="5"  placeholder="float - (default - 7%)" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="saving_int3" min="1" maxlength="5"  placeholder="float - (default - 7.1%)" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="saving_int4" min="1" maxlength="5"  placeholder="float - (default - 8.5%)" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="saving_int5" min="1" maxlength="5"  placeholder="float - (default - 10.0%)" value="" required></div></td>
+				  </tr>
+				  <tr>
+					<td>Time span</td>
+					<td><div class="ui action input">
+						<input type="number" step="0.5" id="timespan1" min="1" maxlength="5"  placeholder="Min 1 year" value="" required>
+						<button class="ui button" onclick="filltimespan()">Fill</button>
+						</div>
+					</td>
+					<td><div class="ui input"><input type="number" step="0.5" id="timespan2" min="1" maxlength="5"  placeholder="Min 1 year" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.5" id="timespan3" min="1" maxlength="5"  placeholder="Min 1 year" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.5" id="timespan4" min="1" maxlength="5"  placeholder="Min 1 year" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.5" id="timespan5" min="1" maxlength="5"  placeholder="Min 1 year" value="" required></div></td>
+				  </tr>
+				  <tr>
+					<td>Inflation</td>
+					<td><div class="ui action input">
+						<input type="number" id="inflationrate1" step="0.01" min="1" maxlength="5"  placeholder="float" value="" required>
+						<button class="ui button" onclick="fillinterest()">Fill</button>
+						</div>
+					</td>
+					<td><div class="ui input"><input type="number" step="0.01" id="inflationrate2" min="1" maxlength="5"  placeholder="float" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="inflationrate3" min="1" maxlength="5"  placeholder="float" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="inflationrate4" min="1" maxlength="5"  placeholder="float" value="" required></div></td>
+					<td><div class="ui input"><input type="number" step="0.01" id="inflationrate5" min="1" maxlength="5"  placeholder="float" value="" required></div></td>
+				  </tr>
+				  <tr>
+					<td>
+						<div class="ui animated fade button" tabindex="0">
+						<div class="visible content">Interest rate after inflation</div>
+						<div class="hidden content" onclick="getdata()">Click to get the data</div></div>
+					</td>
+					<td><div class="ui input"><input  type="number" step="0.01" id="finalrate1" minlength="1" maxlength="10" placeholder="Interest rate after inflation" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="0.01" id="finalrate2" minlength="1" maxlength="10" placeholder="Interest rate after inflation" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="0.01" id="finalrate3" minlength="1" maxlength="10" placeholder="Interest rate after inflation" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="0.01" id="finalrate4" minlength="1" maxlength="10" placeholder="Interest rate after inflation" value="" required></div></td>
+					<td><div class="ui input"><input  type="number" step="0.01" id="finalrate5" minlength="1" maxlength="10" placeholder="Interest rate after inflation" value="" required></div></td>
+				  </tr>
+				  <tr>
+					<td>-</td>
+				  </tr>
+				  <tr>
+					<td>Principle without inflation</td>
+					<td><div class="ui input"><input  type="number" id="resultwithoutinflation1" maxlength="100000000000" value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithoutinflation2"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithoutinflation3"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithoutinflation4"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithoutinflation5"  value="" ></div></td>
+				  </tr>
+				  <tr>
+					<td>Principle after inflation</td>
+					<td><div class="ui input"><input  type="number" id="resultwithinflation1" maxlength="100000000000"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithinflation2"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithinflation3"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithinflation4"  value="" ></div></td>
+					<td><div class="ui input"><input  type="number" id="resultwithinflation5"  value="" ></div></td>
+				  </tr>
+				</table>
+			
+				<br></br>
+				<button class="ui primary button" onclick="calculatevalue()">Submit</button>
+		
+			</form>
+		</div>
+		
+		<div id="content3">
+			<h1 class="heading">calculator:</h1>
+			<p class="para1"> Calculate the return with and without inflation (F = P[({(1+i)^n}-1)/i])</p>
+		</div>
+	</div>	
+
+	<script>
+		function clr() {
+		
+			document.getElementById('current_nav').value = "";
+			document.getElementById('old_nav').value = "";
+			document.getElementById('exp_ratio').value = "";
+			document.getElementById('result').value = "0";
+			document.getElementById('return_in_percentage').value = "0";
+			
+		}
+		
+		function roundoff() {
+			let returnForRoundOff = document.getElementById('result').value;
+			let returnPercentageForRoundoff = document.getElementById('return_in_percentage').value;
+			document.getElementById("result").value = Math.round(returnForRoundOff);
+			document.getElementById("return_in_percentage").value = Math.round(returnPercentageForRoundoff);
+		
+		}
+		
+		function cal(){
+		
+			let currentNav = document.getElementById('current_nav').value;
+			let oldNav = document.getElementById('old_nav').value;
+			let diff = currentNav - oldNav;
+			let returnInPercentage = ((diff)/oldNav)*100;
+			document.getElementById("result").value = diff;
+			document.getElementById("return_in_percentage").value = returnInPercentage;
+		
+		}
+		
+		function assign(){
+			let principle = document.getElementById('principle').value;
+			document.getElementById("principle1").value = principle;
+			document.getElementById("principle2").value = principle;
+			document.getElementById("principle3").value = principle;
+			document.getElementById("principle4").value = principle;
+			document.getElementById("principle5").value = principle;
+		
+		}
+		
+		function applydefault(){
+			document.getElementById("saving_int1").value = "3.5";
+			document.getElementById("saving_int2").value = "7.0";
+			document.getElementById("saving_int3").value = "7.1";
+			document.getElementById("saving_int4").value = "8.5";
+			document.getElementById("saving_int5").value = "10.0";
+
+		}
+		
+		function fillinterest(){
+			let inflationInterest = document.getElementById('inflationrate1').value;
+			document.getElementById("inflationrate2").value = inflationInterest;
+			document.getElementById("inflationrate3").value = inflationInterest;
+			document.getElementById("inflationrate4").value = inflationInterest;
+			document.getElementById("inflationrate5").value = inflationInterest;
+			
+		
+		}
+		
+		function filltimespan(){
+			let timeSpan = document.getElementById('timespan1').value;
+			document.getElementById("timespan2").value = timeSpan;
+			document.getElementById("timespan3").value = timeSpan;
+			document.getElementById("timespan4").value = timeSpan;
+			document.getElementById("timespan5").value = timeSpan;
+			
+		
+		}
+		
+		function getdata() {
+			let govRate = document.getElementById('saving_int1').value;
+			let smfRate = document.getElementById('saving_int2').value;
+			let ppfRate = document.getElementById('saving_int3').value;
+			let epfRate = document.getElementById('saving_int4').value;
+			let indexRate = document.getElementById('saving_int5').value;
+			let inflationRate = document.getElementById('inflationrate1').value;
+			
+			document.getElementById("finalrate1").value = (govRate - inflationRate).toFixed(2);
+			document.getElementById("finalrate2").value = (smfRate - inflationRate).toFixed(2);
+			document.getElementById("finalrate3").value = (ppfRate - inflationRate).toFixed(2);
+			document.getElementById("finalrate4").value = (epfRate - inflationRate).toFixed(2);
+			document.getElementById("finalrate5").value = (indexRate - inflationRate).toFixed(2);
+		
+		}
+		
+		function calculatevalue(){
+			 
+		 
+		 document.getElementById('resultwithoutinflation1').value = '500';
+		 
+		
+		
+		}
+		
+		function nothing() {
+		
+		 let savPrinciple1 = document.getElementById('principle1').value;
+		 let savInt1 = document.getElementById('saving_int1').value;
+		 let savTime1 = document.getElementById('timespan1').value;
+		 let inflationRate1 = document.getElementById('inflationrate1').value;
+		 let result1 = (savPrinciple1 + ( savPrinciple1 * ((((1 + savInt1) * savTime1 )- 1) / savInt1)));
+		
+		}
+	
+	</script>
+	
+</body>
+</html>
